@@ -8,7 +8,7 @@ public class Seguradora {
     public Seguradora(int idSeg, String nmSeg, String tipoDeCobertura) {
         this.idSeg = idSeg;
         this.nmSeg = nmSeg;
-        if(tipoDeCobertura.equals("")){
+        if(tipoDeCobertura != null){
         this.tipoDeCobertura = tipoDeCobertura;}
     }
 

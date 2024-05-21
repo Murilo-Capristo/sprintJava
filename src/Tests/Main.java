@@ -5,9 +5,18 @@ import Models.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
+
+
     public static void main(String[] args) {
+        Scanner scanTxt = new Scanner(System.in);
+        Scanner scanNum = new Scanner(System.in);
+        Random numRandom = new Random();
+
+
         Cliente pedro = new Cliente();
         pedro.emailCli = "pedrodasilva@gmail.com";
         pedro.nmCli = "Pedro da Silva";
@@ -52,8 +61,25 @@ public class Main {
         System.out.println("\n+++++++++++++\n");
         carro1.exibirInformacoes();
 
-        Seguradora seguro1 = new Seguradora(550123, "LIberty Porto Seguro", "");
+        Seguradora seguro1 = new Seguradora(550123, "LIberty Porto Seguro", null);
         System.out.println("\n+++++++++++++\n" + seguro1.verificarCobertura());
+        System.out.println("\n+++++++++++++\n"); seguro1.adicionarCobertura();
+        System.out.println("\n+++++++++++++\n" + seguro1.verificarCobertura());
+
+        Servico consertoDeCapo = new Servico("Conserto de Capô", 3, 80, seguro1);
+        System.out.println("\n+++++++++++++\nServiço " + consertoDeCapo.nmServ + " com preço inical de R$" + consertoDeCapo.precoServ + ", feito em  " + consertoDeCapo.tempoDuracaoServPHora + "h terá o preço final de R$"+consertoDeCapo.calcularPrecoTotal());
+        System.out.println("ID do Serviço: " + consertoDeCapo.getIdServ());
+
+
+        Servico novoServico = new Servico();
+        System.out.println("\n+++++++++++++\nQual o tipo de serviço: ");
+        novoServico.nmServ = scanNum.nextLine();
+        novoServico.gerarDuracaoServPHora();
+        novoServico.gerarValorServico();
+        System.out.println("Para esse tipo de serviço: " +novoServico.nmServ + ", o preço final fica R$"+ novoServico.calcularPrecoTotal());
+
+        Diagnostico novoDiag = new Diagnostico(novoServico, ("Diagnóstico " + novoServico.nmServ), 49.90f);
+        System.out.println(novoDiag.classificarDiagnostico(("O cliente teve o" + novoServico.nmServ + ", o problema será resolvido logo, temos todas as peças para consertar o carro do cliente. ")));;
 
 
 
